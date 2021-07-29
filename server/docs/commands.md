@@ -1,4 +1,4 @@
-Models:
+# Models:
 
 rails g model Category name status:integer
 
@@ -8,16 +8,18 @@ rails db:create
 
 rails db:migrate
 
-rails c :
+# rails c :
 
-Create Category
+# Create Category
 
 Category.create(name: 'laptops', status: 1)
 
-Create Product
+# Create Product
 
 Product.create(brand: "samsun", model: "s123", name: "sg laptop", unit_price: 2201.23, weight: 2.325, category: Category.find(1))
 
-Postgresql
+# Postgresql
 
 psql -d store_online_development
+
+# Controllers without helpers nor assets
