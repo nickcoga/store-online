@@ -23,3 +23,7 @@ Product.create(brand: "samsun", model: "s123", name: "sg laptop", unit_price: 22
 psql -d store_online_development
 
 # Controllers without helpers nor assets
+
+rails g controller Categories index show create update destroy --no-helper --no-assets --no-template-engine
+
+rails g controller Products index show create update destroy --no-helper --no-assets --no-template-engine
