@@ -7,7 +7,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-if Rails.env.development?
+
   puts "Deleting current data"
   # TODO: fix destroy_all order or search how to delete all records from all tables in one command
   Product.destroy_all
@@ -37,6 +37,6 @@ if Rails.env.development?
   product_3_1 = Product.create!(name: "LG OLED65CXPUA", unit_price: unit_price_3_1, brand: "LG", weight: 7.52, model: "OLED65CXPUA", links: "https://placeimg.com/199/199/tech?random=6",  category: category3)
 
   puts "Finish seeding"
-else
-  puts "Seeds do not work in other than development environment"
-end
+
+
+
