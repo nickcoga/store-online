@@ -27,3 +27,9 @@ psql -d store_online_development
 rails g controller Categories index show create update destroy --no-helper --no-assets --no-template-engine
 
 rails g controller Products index show create update destroy --no-helper --no-assets --no-template-engine
+
+# Add Columns Links in Products
+
+rails g migration AddLinksToProdutcs
+
+add_column :products, :links, :string
