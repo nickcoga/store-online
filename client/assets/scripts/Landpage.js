@@ -6,7 +6,7 @@ export default function Landpage(parentSelector) {
     this.parentElement = document.querySelector(parentSelector);
     this.toString = function () {
       return `
-      <table id="tablaProductos" class="table mt-2 table-bordered table-striped">
+      <table class=" js-TablaCategory-Products table mt-2 table-bordered table-striped">
         <thead>
           <tr class="text-center">
             <td>ID</td>
@@ -28,29 +28,53 @@ export default function Landpage(parentSelector) {
   return Landpage.instance;
 }
 
-Landpage.prototype.generateProducts = function (parentSelector) {
+Landpage.prototype.generateCategories = function (parentSelector) {
   const container = this.parentElement.querySelector(parentSelector);
   console.log(this.parentElement);
-  console.log(container);
-  const products = STORE.products.map((product) => {
+  console.log(STORE.categories);
+  const categories = STORE.categories.map((categorie, key = index) => {
     return `
-        <tr>
-          <td>${product.id}</td>
-          <td>${product.name}</td>
-          <td>${product.unit_price}</td>
-          <td>${product.brand}</td>
-          <td>${product.weight}</td>
-          <td>${product.model}</td>
-          <td>${product.category_id}</td>
-        </tr>
+    <table id=${key} class="js-TablaCategory-Products table mt-2 table-bordered table-striped">
+    <thead>
+      <tr class="text-center">
+        <th COLSPAN=7>${categorie.name}</th>
+      </tr>
+      <tr class="text-center">
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRECIO UNITARIO</th>
+        <th>BRAND</th>
+        <th>WEIGHT</th>
+        <th>MODEL</th>
+        <th>CATEGORIA</th>
+      </tr>
+    </thead>
+      <tbody class="tbody">
+      ${categorie.products
+        .map((product) => {
+          return `
+          <tr>
+            <td>${product.id}</td>
+            <td>${product.name}</td>
+            <td>${product.unit_price}</td>
+            <td>${product.brand}</td>
+            <td>${product.weight}</td>
+            <td>${product.model}</td>
+            <td>${product.category_id}</td>
+          </tr>
+        `;
+        })
+        .join("")}
+    </tbody>
+  </table> 
     `;
   });
-  container.innerHTML = products.join("");
-  console.log("products", products);
+  container.innerHTML = categories.join("");
+  console.log("products", categories);
 };
 
 Landpage.prototype.render = function () {
   this.parentElement.innerHTML = this;
-  this.generateProducts(".tbody");
+  this.generateCategories(".js-TablaCategory-Products");
   console.log(this);
 };
