@@ -6,21 +6,8 @@ export default function Landpage(parentSelector) {
     this.parentElement = document.querySelector(parentSelector);
     this.toString = function () {
       return `
-      <table class=" js-TablaCategory-Products table mt-2 table-bordered table-striped">
-        <thead>
-          <tr class="text-center">
-            <td>ID</td>
-            <td>NAME</td>
-            <td>PRECIO UNITARIO</td>
-            <td>BRAND</td>
-            <td>WEIGHT</td>
-            <td>MODEL</td>
-            <td>CATEGORIA</td>
-          </tr>
-        </thead>
-        <tbody class="tbody">
-        </tbody>
-      </table>
+      <div class="js-content-card row g-2">
+      </div>
       `;
     };
     Landpage.instance = this;
@@ -33,40 +20,34 @@ Landpage.prototype.generateCategories = function (parentSelector) {
   console.log(this.parentElement);
   console.log(STORE.categories);
   const categories = STORE.categories.map((categorie, key = index) => {
+    console.log("products:", categorie.products);
     return `
-    <table id=${key} class="js-TablaCategory-Products table mt-2 table-bordered table-striped">
-    <thead>
-      <tr class="text-center">
-        <th COLSPAN=7>${categorie.name}</th>
-      </tr>
-      <tr class="text-center">
-        <th>ID</th>
-        <th>NAME</th>
-        <th>PRECIO UNITARIO</th>
-        <th>BRAND</th>
-        <th>WEIGHT</th>
-        <th>MODEL</th>
-        <th>CATEGORIA</th>
-      </tr>
-    </thead>
-      <tbody class="tbody">
-      ${categorie.products
-        .map((product) => {
-          return `
-          <tr>
-            <td>${product.id}</td>
-            <td>${product.name}</td>
-            <td>${product.unit_price}</td>
-            <td>${product.brand}</td>
-            <td>${product.weight}</td>
-            <td>${product.model}</td>
-            <td>${product.category_id}</td>
-          </tr>
-        `;
-        })
-        .join("")}
-    </tbody>
-  </table> 
+
+    <div class="col-12 ">${categorie.name}</div>
+    
+    ${categorie.products
+      .map((product) => {
+        return `
+        <div class="col-6 col-lg-2">
+          <div class="card">
+            <img
+              src="${product.links}"
+              class="card-img-top"
+              alt="..."
+            />
+            <div class="card-body">
+              <h5 class="card-title text-truncate">${product.name}</h5>
+              <div class="d-flex justify-content-center align-items-center gap-3">
+                <p class="card-text mb-0">${product.unit_price}</p>
+                <i class="fas fa-cart-plus"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+      })
+      .join("")}
+      
     `;
   });
   container.innerHTML = categories.join("");
@@ -75,6 +56,6 @@ Landpage.prototype.generateCategories = function (parentSelector) {
 
 Landpage.prototype.render = function () {
   this.parentElement.innerHTML = this;
-  this.generateCategories(".js-TablaCategory-Products");
+  this.generateCategories(".js-content-card");
   console.log(this);
 };
