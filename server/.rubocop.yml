@@ -56,7 +56,7 @@ Style/FrozenStringLiteralComment:
 # Metrics/AbcSize:
 #   Enabled: false
 Layout/LineLength:
-  Max: 100
+  Max: 150
   IgnoredPatterns: ['\s*#']
 
 Metrics/BlockLength:

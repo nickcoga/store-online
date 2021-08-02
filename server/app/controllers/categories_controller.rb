@@ -1,6 +1,10 @@
 class CategoriesController < ApplicationController
   def index
-    @categories = Category.all
+    @categories = if params[:name].nil?
+                    Category.all
+                  else
+                    @categories = Category.includes(:products).where(products: { name: params[:name] })
+                  end
     render json: @categories.to_json(include: [:products])
   end
 
