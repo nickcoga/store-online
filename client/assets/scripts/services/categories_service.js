@@ -15,4 +15,12 @@ CategoriesService.prototype.list = () =>
     },
   });
 
+CategoriesService.prototype.search = (name) =>
+  apiFetch(`${BASE_URL}/categories?name=${name}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
 export default CategoriesService;
