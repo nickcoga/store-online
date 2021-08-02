@@ -33,3 +33,15 @@ rails g controller Products index show create update destroy --no-helper --no-as
 rails g migration AddLinksToProdutcs
 
 add_column :products, :links, :string
+
+rails g migration AddDiscountToProdutcs
+
+add_column :products, :discount, :integer
+
+rails g migration DeleteColumnsToProdutcs
+
+rename_column :products, :unit_price, :price
+rename_column :products, :links, :url_image
+remove_column :products, :brand, :string
+remove_column :products, :weight, :decimal
+remove_column :products, :model, :string
