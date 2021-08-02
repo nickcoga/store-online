@@ -45,3 +45,30 @@ rename_column :products, :links, :url_image
 remove_column :products, :brand, :string
 remove_column :products, :weight, :decimal
 remove_column :products, :model, :string
+
+# Change Database in File config/database.yml
+
+rails db:system:change --to=mysql
+
+sudo apt install libmysqlclient-dev
+
+rake assets:precompile
+
+# Confing database.yml
+
+production:
+<<: \*default
+database: <%= ENV['BSALE_DATABASE_NAME'] %>
+username: <%= ENV['BSALE_DATABASE_USERNAME'] %>
+password: <%= ENV['BSALE_DATABASE_PASSWORD'] %>
+host: <%= ENV['RDS_HOSTNAME'] %>
+port: <%= ENV['RDS_PORT'] %>
+
+# Change pluralize tables for mysql to singular
+
+config.active_record.pluralize_table_names = false
+
+# Variable ENV:
+
+export DB_USERNAME=myusername
+export DB_PASSWORD=mypassword
