@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-class CreateProducts < ActiveRecord::Migration[6.1]
+class CreateProduct < ActiveRecord::Migration[6.1]
   def change
-    create_table :products do |t|
+    create_table :product do |t|
       t.string :name
       t.decimal :unit_price, precision: 7, scale: 2
       t.string :brand
