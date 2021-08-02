@@ -1,3 +1,4 @@
+import CategoriesService from "./services/categories_service.js";
 import STORE from "./store.js";
 
 export default function Landpage(parentSelector) {
@@ -6,7 +7,31 @@ export default function Landpage(parentSelector) {
     this.parentElement = document.querySelector(parentSelector);
     this.toString = function () {
       return `
-      <div class="js-content-card row g-2">
+        <header class="d-flex align-items-center">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-2 col-lg-2"></div>
+            <div class="col-5 col-lg-2">BSales Test</div>
+            <div class="col-5 col-lg-2">Tienda</div>
+
+            <div class="col-12 col-lg-6 d-flex gap-4">
+                <form class="js-form-search d-flex gap-4">
+                  <div>
+                  <input class="js-search border-0 rounded-pill" type="text" value=""/>
+                  </div>
+                  <div>
+                    <i class="fas fa-search"></i>
+                  </div>
+                </form>
+                <div>
+                <i class="fas fa-shopping-cart"></i>
+                </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="container mt-4">
+        <div class="js-content-card row g-2"></div>
       </div>
       `;
     };
@@ -17,14 +42,10 @@ export default function Landpage(parentSelector) {
 
 Landpage.prototype.generateCategories = function (parentSelector) {
   const container = this.parentElement.querySelector(parentSelector);
-  console.log(this.parentElement);
-  console.log(STORE.categories);
-  const categories = STORE.categories.map((categorie, key = index) => {
-    console.log("products:", categorie.products);
+  const categories = STORE.categories.map((categorie) => {
     return `
 
     <div class="col-12 ">${categorie.name}</div>
-    
     ${categorie.products
       .map((product) => {
         return `
@@ -38,7 +59,7 @@ Landpage.prototype.generateCategories = function (parentSelector) {
             <div class="card-body">
               <h5 class="card-title text-truncate">${product.name}</h5>
               <div class="d-flex justify-content-center align-items-center gap-3">
-                <p class="card-text mb-0">${product.unit_price}</p>
+                <p class="card-text mb-0">$ ${product.unit_price}</p>
                 <i class="fas fa-cart-plus"></i>
               </div>
             </div>
@@ -51,11 +72,22 @@ Landpage.prototype.generateCategories = function (parentSelector) {
     `;
   });
   container.innerHTML = categories.join("");
-  console.log("products", categories);
+};
+
+Landpage.prototype.searchProducts = function (parentSelector) {
+  const formsearch = this.parentElement.querySelector(parentSelector);
+  formsearch.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const value = e.target[0].value;
+
+    const categoriesService = new CategoriesService();
+    STORE.categories = await categoriesService.search(value);
+    this.generateCategories(".js-content-card");
+  });
 };
 
 Landpage.prototype.render = function () {
   this.parentElement.innerHTML = this;
   this.generateCategories(".js-content-card");
-  console.log(this);
+  this.searchProducts(".js-form-search");
 };
