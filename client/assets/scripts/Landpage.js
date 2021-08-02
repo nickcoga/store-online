@@ -43,6 +43,7 @@ export default function Landpage(parentSelector) {
 Landpage.prototype.generateCategories = function (parentSelector) {
   const container = this.parentElement.querySelector(parentSelector);
   const categories = STORE.categories.map((categorie) => {
+    console.log(categorie);
     return `
 
     <div class="col-12 ">${categorie.name}</div>
@@ -52,14 +53,14 @@ Landpage.prototype.generateCategories = function (parentSelector) {
         <div class="col-6 col-lg-2">
           <div class="card">
             <img
-              src="${product.links}"
+              src="${product.url_image}"
               class="card-img-top"
               alt="..."
             />
             <div class="card-body">
               <h5 class="card-title text-truncate">${product.name}</h5>
               <div class="d-flex justify-content-center align-items-center gap-3">
-                <p class="card-text mb-0">$ ${product.unit_price}</p>
+                <p class="card-text mb-0">$ ${product.price}</p>
                 <i class="fas fa-cart-plus"></i>
               </div>
             </div>
