@@ -16,9 +16,9 @@
   puts "Start seeding"
 
   puts "creating categories"
-  category1 = Category.create!(name: 'Laptops', status: 1)
-  category2 = Category.create!(name: 'Phones & Accessories', status: 1)
-  category3 = Category.create!(name: 'TVs', status: 1)
+  category1 = Category.create!(name: 'Laptops')
+  category2 = Category.create!(name: 'Phones & Accessories')
+  category3 = Category.create!(name: 'TVs')
 
 
   puts "creating products"
