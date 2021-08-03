@@ -14,28 +14,30 @@ At the beginning of the construction of the application, the database was integr
 
 # The Server or backend is deployed with Heroku in the following links with categories and products:
 
-https://heroku-bsale-server.herokuapp.com/categories
-https://heroku-bsale-server.herokuapp.com/products
+- Categories: [https://heroku-bsale-server.herokuapp.com/categories]
+- Products: [https://heroku-bsale-server.herokuapp.com/products]
 
 # The Fronted Client is deployed with Netlify at the following link:
 
-https://clever-leakey-38ed47.netlify.app/
+- Deploy: [https://clever-leakey-38ed47.netlify.app/]
 
 # The tools or libraries used for this project were:
 
 Server:
-gem PG
-gem MYsql2
-gem rack cors
-gem Rubocop
-host aws connection with environment variables
+
+- gem PG
+- gem MYsql2
+- gem rack cors
+- gem Rubocop
+- host aws connection with environment variables
 
 Client:
-Bootstrap
-Responsive
-Grid and Flex
-Singleton
-fontawesome
+
+- Bootstrap
+- Responsive
+- Grid and Flex
+- Singleton
+- fontawesome
 
 The implementation of some commands are in:
 /store-online/server/docs/commands.md
