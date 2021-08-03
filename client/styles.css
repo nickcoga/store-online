@@ -7,6 +7,27 @@ table thead {
 }
 
 header {
-  height: 70px;
+  height: 5.5rem;
   background-color: bisque;
+}
+
+input {
+  font-size: 1.5rem;
+  width: 16rem;
+  height: 2.5rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+.card img {
+  height: 15rem;
+}
+
+@media screen and (min-width: 768px) {
+  input {
+    width: 30rem;
+    height: 2rem;
+  }
 }
