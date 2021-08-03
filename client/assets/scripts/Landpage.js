@@ -7,17 +7,17 @@ export default function Landpage(parentSelector) {
     this.parentElement = document.querySelector(parentSelector);
     this.toString = function () {
       return `
-        <header class="d-flex align-items-center">
+      <header class="d-flex align-items-center">
         <div class="container-fluid">
-          <div class="row">
+          <div class="row ">
             <div class="col-2 col-lg-2"></div>
-            <div class="col-5 col-lg-2">BSales Test</div>
-            <div class="col-5 col-lg-2">Tienda</div>
+            <div class="col-5 col-lg-2 fs-4">BSales Test</div>
+            <div class="col-5 col-lg-2 fs-4">Tienda</div>
 
-            <div class="col-12 col-lg-6 d-flex gap-4">
-                <form class="js-form-search d-flex gap-4">
+            <div class="col-12 col-lg-6 d-flex align-items-center gap-2 gap-lg-3">
+                <form class="js-form-search d-flex align-items-center gap-3">
                   <div>
-                  <input class="js-search border-0 rounded-pill" type="text" value=""/>
+                  <input class="js-search border-0 rounded-pill px-4" type="text" placeholder="Busca productos..."value=""/>
                   </div>
                   <div>
                     <i class="fas fa-search"></i>
@@ -43,10 +43,9 @@ export default function Landpage(parentSelector) {
 Landpage.prototype.generateCategories = function (parentSelector) {
   const container = this.parentElement.querySelector(parentSelector);
   const categories = STORE.categories.map((categorie) => {
-    console.log(categorie);
     return `
 
-    <div class="col-12 ">${categorie.name}</div>
+    <div class="col-12 fs-1 fw-bold ">${categorie.name.toUpperCase()}</div>
     ${categorie.products
       .map((product) => {
         return `
@@ -54,6 +53,7 @@ Landpage.prototype.generateCategories = function (parentSelector) {
           <div class="card">
             <img
               src="${product.url_image}"
+              onerror='this.onerror = null; this.src="https://www.ecpgr.cgiar.org/fileadmin/templates/ecpgr.org/Assets/images/No_Image_Available.jpg"'
               class="card-img-top"
               alt="..."
             />
