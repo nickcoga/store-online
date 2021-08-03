@@ -1,4 +1,4 @@
-const BASE_URL = "https://nicoga-store-server.herokuapp.com";
+const BASE_URL = "https://heroku-bsale-server.herokuapp.com";
 
 async function apiFetch(...args) {
   const response = await fetch(...args);
