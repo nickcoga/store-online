@@ -42,6 +42,8 @@ Fronted development is structured in a client folder which is divided by:
 
 # The Fronted Client is deployed with Netlify at the following link:
 
+Take into account how this application is deployed in Heroku, the servers sleep them due to inactivity, we must wait for the asynchronous function to return the data for a few seconds.
+
 - Deploy: [https://clever-leakey-38ed47.netlify.app/]
 
 # The tools or libraries used for this project were:
