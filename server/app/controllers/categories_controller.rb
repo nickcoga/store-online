@@ -3,7 +3,7 @@ class CategoriesController < ApplicationController
     @categories = if params[:name].nil?
                     Category.all
                   else
-                    Category.includes(:products).where('LOWER(product.name) LIKE ?', "%#{params[:name].downcase}%").references(:products)
+                    Category.includes(:products).where("LOWER(product.name) LIKE concat('%',?,'%')", params[:name].downcase).references(:products)
                   end
     render json: @categories.to_json(include: [:products])
   end
