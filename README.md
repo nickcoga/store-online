@@ -10,9 +10,13 @@ This exercise is about a small online store where we can filter various products
 
 The client application is developed in vanilla pure javascript without any framework and with some boopstrap or pure css components.
 
-Finally, the application is available in Netlify, the client part and the server part in Heroku connected with the resources given in the exercise of bsale through a host in AWS.
+The application has several products which are stored in a database in Mysql and are managed by RoR, it contains a controller index that generates a direct query to the server through a search engine which is protected from sql injection which improves security of the application.
+
+This application also allows you to show if any of the products in the search are not available.
 
 At the beginning of the construction of the application, the database was integrated with Postgres Sql to perform basic tests satisfactorily, but then the migration of the databases to mysql was carried out, having some problems with the category reference field in products due to the Rails conventions.
+
+Finally, the application is available in Netlify, the client part and the server part in Heroku connected with the resources given in the exercise of bsale through a host in AWS.
 
 # Api Rest detail:
 
