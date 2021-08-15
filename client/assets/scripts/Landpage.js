@@ -42,36 +42,47 @@ export default function Landpage(parentSelector) {
 
 Landpage.prototype.generateCategories = function (parentSelector) {
   const container = this.parentElement.querySelector(parentSelector);
-  const categories = STORE.categories.map((categorie) => {
-    return `
 
-    <div class="col-12 fs-1 fw-bold ">${categorie.name.toUpperCase()}</div>
-    ${categorie.products
-      .map((product) => {
-        return `
-        <div class="col-6 col-lg-2">
-          <div class="card">
-            <img
-              src="${product.url_image}"
-              onerror='this.onerror = null; this.src="https://www.ecpgr.cgiar.org/fileadmin/templates/ecpgr.org/Assets/images/No_Image_Available.jpg"'
-              class="card-img-top"
-              alt="..."
-            />
-            <div class="card-body">
-              <h5 class="card-title text-truncate">${product.name}</h5>
-              <div class="d-flex justify-content-center align-items-center gap-3">
-                <p class="card-text mb-0">$ ${product.price}</p>
-                <i class="fas fa-cart-plus"></i>
+  const emptyProducts = STORE.categories.length === 0;
+
+  let categories;
+  // This condition handle case if products dont exist in stock
+  if (emptyProducts) {
+    categories = [
+      `<div class="mt-5 fs-1 fw-bold">No existen productos relacionados a la busqueda</div>`,
+    ];
+  } else {
+    categories = STORE.categories.map((category) => {
+      return `
+      <div class="col-12 fs-1 fw-bold ">${category.name.toUpperCase()}</div>
+      ${category.products
+        .map((product) => {
+          return `
+          <div class="col-6 col-lg-2">
+            <div class="card">
+              <img
+                src="${product.url_image}"
+                onerror='this.onerror = null; this.src="https://www.ecpgr.cgiar.org/fileadmin/templates/ecpgr.org/Assets/images/No_Image_Available.jpg"'
+                class="card-img-top"
+                alt="..."
+              />
+              <div class="card-body">
+                <h5 class="card-title text-truncate">${product.name}</h5>
+                <div class="d-flex justify-content-center align-items-center gap-3">
+                  <p class="card-text mb-0">$ ${product.price}</p>
+                  <i class="fas fa-cart-plus"></i>
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        `;
+        })
+        .join("")}
+        
       `;
-      })
-      .join("")}
-      
-    `;
-  });
+    });
+  }
+
   container.innerHTML = categories.join("");
 };
 
