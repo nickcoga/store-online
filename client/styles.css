@@ -13,7 +13,7 @@ header {
 
 input {
   font-size: 1.5rem;
-  width: 16rem;
+  width: 15rem;
   height: 2.5rem;
 }
 
@@ -27,7 +27,7 @@ input:focus {
 
 @media screen and (min-width: 768px) {
   input {
-    width: 30rem;
+    width: 29rem;
     height: 2rem;
   }
 }

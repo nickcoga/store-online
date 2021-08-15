@@ -16,11 +16,9 @@ export default function Landpage(parentSelector) {
 
             <div class="col-12 col-lg-6 d-flex align-items-center gap-2 gap-lg-3">
                 <form class="js-form-search d-flex align-items-center gap-3">
-                  <div>
-                  <input class="js-search border-0 rounded-pill px-4" type="text" placeholder="Busca productos..."value=""/>
-                  </div>
-                  <div>
-                    <i class="fas fa-search"></i>
+                  <div class="border border-primary rounded-pill px-4 bg-white">
+                  <input class="js-search border-0" type="text" placeholder="Busca productos..."value=""/>
+                  <i class="js-fa-search fas fa-search"></i>
                   </div>
                 </form>
                 <div>
@@ -88,14 +86,20 @@ Landpage.prototype.generateCategories = function (parentSelector) {
 
 Landpage.prototype.searchProducts = function (parentSelector) {
   const formsearch = this.parentElement.querySelector(parentSelector);
-  formsearch.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const value = e.target[0].value;
+  const input = document.querySelector(".js-search");
 
+  const search = async (e) => {
+    e.preventDefault();
+    const value = input.value;
     const categoriesService = new CategoriesService();
     STORE.categories = await categoriesService.search(value);
     this.generateCategories(".js-content-card");
-  });
+  };
+
+  formsearch.addEventListener("submit", search);
+
+  const fasearch = this.parentElement.querySelector(".js-fa-search");
+  fasearch.addEventListener("click", search);
 };
 
 Landpage.prototype.render = function () {
