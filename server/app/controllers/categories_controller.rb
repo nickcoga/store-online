@@ -1,5 +1,6 @@
 class CategoriesController < ApplicationController
   def index
+    # This method prevent sql injection and show all categories with their related products.
     @categories = if params[:name].nil?
                     Category.all
                   else
